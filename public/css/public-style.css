@@ -1,0 +1,545 @@
+:root {
+    --light-green: #6FBA81;
+    --deep-green: #164544;
+    --light-dark: #333333;
+    --deep-grey: #797979;
+    --medium-grey: #D9D9D9;
+    --light-grey: #F6F6F6;
+    --classic-white: #FFFFFF;
+    --classic-black: #00000;
+}
+.overflow-full-hidden {
+    overflow: hidden;
+}
+/* Quote Popup */
+.m2c_quotes_popup {
+    position: fixed;
+    z-index: 991;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-150%);
+    padding: 1rem;
+}
+.m2c_quotes_popup.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+.m2c_qp_container {
+    position: relative;
+    padding: 2rem 1rem;
+    background-color: #fff;
+    height: 100%;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_container {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        height: fit-content;
+    }
+}
+.m2c_qp_title {
+    width: fit-content;
+    position: relative;
+    margin: 0 auto 1rem auto;
+    display: block;
+    font-family: "commuters-sans", sans-serif;
+    font-size: 1.72rem;
+    text-align: center;
+    color: var(--deep-green);
+    font-weight: 900;
+    text-transform: uppercase;
+    padding-bottom: 0.25rem;
+    padding-right: 0.5rem;
+    line-height: 24px;
+    border-bottom: 2px solid var(--light-green);
+}
+.m2c_qp_title span {
+    font-weight: 200;
+}
+.m2c_qp_title:after {
+    content: "";
+    position: absolute;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid var(--light-green);
+    right: -10px;
+    top: -5px;
+}
+.m2c_qp_list {
+    display: flex;
+    flex-direction: column;
+    max-height: 60%;
+    overflow-y: scroll;
+    padding-right: 6px;
+}
+.m2c_qp_list::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+}
+.m2c_qp_list::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+.m2c_qp_list::-webkit-scrollbar-thumb {
+    background: var(--deep-green);
+}
+.m2c_qp_list::-webkit-scrollbar-thumb:hover {
+    background: var(--deep-green);
+}
+.m2c_qp_list .devis-item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+}
+.m2c_qp_list .devis-item .devis-item-image {
+    width: 100px;
+    background-color: var(--light-grey);
+}
+.m2c_qp_list .devis-item .devis-item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: 1rem;
+}
+.m2c_qp_list .devis-item .devis-item-content .devis-item-content-name {
+    font-family: "commuters-sans", sans-serif;
+    text-transform: uppercase;
+    color: var(--deep-green);
+    font-size: 18px;
+    font-weight: 800;
+}
+.m2c_qp_list .devis-item .devis-item-content .devis-item-content-quantity {
+    font-family: "commuters-sans", sans-serif;
+    font-size: 13px;
+    color: var(--deep-green);
+    font-weight: 300;
+}
+.m2c_qp_list .devis-item .devis-item-content .devis-item-content-quantity span:nth-child(0n+2) {
+    font-weight: 600;
+}
+.m2c_qp_list .devis-item .devis-item-content .devis-item-content-modify {
+    font-family: "commuters-sans", sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--deep-green);
+    font-weight: 800;
+    text-decoration: underline;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_list .devis-item .devis-item-content .devis-item-content-modify {
+        display: none;
+    }
+}
+.m2c_qp_list .devis-item .devis-item-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.m2c_qp_list .devis-item .devis-item-actions .devis-item-actions-modify {
+    display: none;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_list .devis-item .devis-item-actions .devis-item-actions-modify {
+        display: block;
+        font-family: "commuters-sans", sans-serif;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--deep-green);
+        text-decoration: underline;
+        margin-right: 2rem;
+    }
+}
+.m2c_qp_list .devis-item .devis-item-actions .devis-item-actions-delete img {
+    width: 18px;
+}
+.m2c_qp_list .devis-item .devis-item-no-products {
+    font-family: "new-hero", sans-serif;
+    font-size: 16px;
+    color: var(--deep-green);
+    text-align: center;
+}
+
+.m2c_qp_actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_actions {
+        margin-top: 2rem;
+    }
+}
+.m2c_qp_actions_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_actions_row {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+.m2c_qp_actions_row button {
+    margin: 0.5rem auto;
+    display: block;
+    width: fit-content;
+    padding: 0.75rem 2rem;
+    background-color: var(--light-green);
+    font-family: "commuters-sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--classic-white);
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_actions_row button {
+        margin: 0 2rem;
+    }
+}
+.m2c_qp_actions_row button span {
+    position: relative;
+    z-index: 2;
+}
+.m2c_qp_actions_row button:before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+    transform: translate(4px, 4px);
+    background-color: transparent;
+    border: 1px solid var(--light-green);
+}
+.m2c_qp_actions_row button:hover:before {
+    transform: translate(0, 0);
+}
+
+.m2c_qp_actions_row .m2c_qp_submit {
+    margin: 0.5rem auto;
+    display: block;
+    width: fit-content;
+    padding: 0.75rem 2rem;
+    background-color: var(--deep-green);
+    font-family: "commuters-sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--classic-white);
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+}
+@media screen and (min-width: 1024px) {
+    .m2c_qp_actions_row .m2c_qp_submit {
+        margin: 0 2rem;
+    }
+}
+.m2c_qp_actions_row .m2c_qp_submit span {
+    position: relative;
+    z-index: 2;
+}
+.m2c_qp_actions_row .m2c_qp_submit:before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+    transform: translate(4px, 4px);
+    background-color: transparent;
+    border: 1px solid var(--deep-green);
+}
+.m2c_qp_actions_row .m2c_qp_submit:hover:before {
+    transform: translate(0, 0);
+}
+
+/* Quote Form Page */
+.quote-form-page {
+    overflow: hidden;
+}
+@media screen and (min-width: 1024px) {
+    .quote-form-page {
+        padding: 0 5%;
+    }
+    .quote-form-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.quote-form-page .quote-form-sidelist .devis-item {
+    justify-content: center;
+    margin: 0;
+    padding: 1rem 0;
+}
+@media screen and (max-width: 1024px) {
+    .quote-form-page .quote-form-sidelist {
+        display: none;
+    }
+}
+.quote-form-page .quote-form-sidelist .devis-item:not(:last-child) {
+    border-bottom: 1px solid var(--deep-green);
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-image {
+    width: auto;
+    margin: 0 auto;
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-image img {
+    width: 130px;
+    border: 1px solid var(--deep-green);
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-content {
+    margin-right: 0;
+    width: 60%;
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-content .devis-item-content-name {
+    position: relative;
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-content .devis-item-content-name:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 11px solid var(--light-green);
+    position: absolute;
+    right: -1rem;
+    top: 25%;
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-content .devis-item-content-quantity span:nth-child(0n+1) {
+    text-transform: uppercase;
+}
+.quote-form-page .quote-form-sidelist .devis-item .devis-item-actions {
+    display: none;
+}
+
+/* Quote Breadcrumb */
+.quote-breadcrumb {
+    margin: 1rem 0;
+}
+.quote-breadcrumb-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.quote-breadcrumb-item {
+    padding: 1rem;
+}
+.quote-breadcrumb-item p {
+    font-family: "commuters-sans", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--classic-black);
+    text-transform: capitalize;
+}
+.quote-breadcrumb-item.active-step p {
+    font-weight: bold;
+}
+
+.quote-form-container #success-message {
+    text-align: center;
+}
+.quote-form-container #success-message button {
+    background-color: var(--deep-green);
+    color: white;
+    padding: 5px 15px;
+    display: block;
+    margin: 1rem auto 0;
+}
+
+#quoteForm {
+    width: 100%;
+}
+@media screen and (min-width: 1024px) {
+    #quoteForm {
+        width: 50%;
+        overflow: hidden;
+    }
+}
+#quoteForm .form-step {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 1rem;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+#quoteForm .form-step .form-step-head {
+    padding: 1rem 0;
+}
+#quoteForm .form-step .form-step-head h2 {
+    font-family: "commuters-sans", sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--deep-green);
+    text-transform: uppercase;
+}
+#quoteForm .form-step .form-step-head h2 span:nth-child(0n+1) {
+    border-bottom: 1px solid var(--deep-green);
+}
+#quoteForm .form-step .form-step-head h2 span:nth-child(0n+2) {
+    color: var(--classic-white);
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-weight: 300;
+    font-family: 'new-hero', sans-serif;
+    line-height: 29px;
+}
+#quoteForm .form-step .form-step-head h2 span:nth-child(0n+2):before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-color: var(--deep-green);
+    z-index: -1;
+}
+@media screen and (min-width: 1024px) {
+    #quoteForm .form-step .form-step-body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    #quoteForm .form-step .form-step-body .form-step-field {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    #quoteForm #step1 .form-step-body .form-step-field:nth-child(0n+1),
+    #quoteForm #step1 .form-step-body .form-step-field:nth-child(0n+2) {
+        width: 49%;
+    }
+}
+#quoteForm .form-step .form-step-body .form-step-field {
+    margin: 1rem 0;
+    padding: 0.75rem 0.5rem;
+    border: 1px solid var(--light-green);
+}
+#quoteForm .form-step .form-step-body .form-step-field label {
+    display: none;
+}
+#quoteForm .form-step .form-step-body .form-step-field input,
+#quoteForm .form-step .form-step-body .form-step-field textarea,
+#quoteForm .form-step .form-step-body .form-step-field select {
+    width: 100%;
+    display: block;
+}
+
+#quoteForm .form-step .form-step-footer {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+#quoteForm .form-step .form-step-footer .form-prev-step {
+    text-align: center;
+    background-color: var(--classic-white);
+    padding: 0.75rem 2rem;
+    width: 100%;
+}
+#quoteForm .form-step .form-step-footer .form-prev-step span {
+    font-family: "new-hero", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--light-green);
+    text-decoration: underline;
+    text-transform: uppercase;
+    vertical-align: sub;
+}
+#quoteForm .form-step .form-step-footer .form-next-step {
+    text-align: center;
+    background-color: var(--deep-green);
+    padding: 0.75rem 2rem;
+    width: 100%;
+}
+#quoteForm .form-step .form-step-footer .form-next-step span {
+    font-family: "new-hero", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--classic-white);
+    text-decoration: underline;
+    text-transform: uppercase;
+    vertical-align: sub;
+}
+
+@media screen and (min-width: 1024px) {
+    .quote-form-sidelist {
+        width: 40%;
+        height: fit-content;
+        background-color: var(--light-grey);
+        padding: 1rem;
+    }
+    .quote-form-sidelist .m2c_qp_list {
+        overflow: auto;
+    }
+}
+
+/* Form - Step Categories */
+#quoteForm .form-step .form-step-body .form-other-categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: auto;
+}
+#quoteForm .form-step .form-step-body .form-other-categories .form-other-categories-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--deep-green);
+    color: var(--deep-green);
+    background-color: var(--classic-white);
+    font-family: "new-hero", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+}
+#quoteForm .form-step .form-step-body .form-other-categories .form-other-categories-link:hover {
+    background-color: var(--light-green);
+}
+
+/* Form - Last step */
+#quoteForm .form-step:last-child .form-step-body .form-step-field:not(:first-child) {
+    border: none;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+#quoteForm .form-step:last-child .form-step-body .form-step-field:not(:first-child) input {
+    display: inline-block;
+    width: auto;
+}
+#quoteForm .form-step:last-child .form-step-body .form-step-field:not(:first-child) label {
+    display: inline-block;
+}
+
+.translate-in {
+    transform: translateX(0) !important;
+}
+.translate-left {
+    transform: translateX(-100%) !important;
+}
+.translate-right {
+    transform: translateX(100%) !important;
+}

@@ -1,0 +1,132 @@
+.quote_single_page {
+    padding: 1rem;
+
+    .quote_single_title {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .quote_single_body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .quote_single_general {
+            width: 25%;
+            height: fit-content;
+            border: 1px solid #c3c4c7;
+            box-shadow: 0 1px 1px rgba(0,0,0,.04);
+            background: #fff;
+            padding: 1rem;
+
+            .quote_single_general_infos {
+                width: 100%;
+
+                .quote_single_general_table {
+                    border: 1px solid #1C6EA4;
+                    width: 100%;
+                    text-align: left;
+                    border-collapse: collapse;
+
+                    .quote_single_general_table_row {
+                        td {
+                            border: 1px solid #AAAAAA;
+                            padding: 4px 15px;
+                        }
+
+                        .key {
+                            font-weight: 600;
+                        }
+
+                        .value {
+                            .icon {
+                                width: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .quote_single_products {
+            width: 65%;
+
+            .quote_single_products_title {
+                font-size: 25px;
+                font-weight: 800;
+                text-transform: uppercase;
+                text-align: center;
+                border-bottom: 2px solid black;
+                padding-bottom: 5px;
+                width: fit-content;
+            }
+
+            .quote_single_products_list {
+                display: flex;
+                flex-direction: column;
+
+                .quote_single_product-details {
+                    display: flex;
+                    flex-direction: row;
+
+                    .quote_single_product-col-left {
+                        width: 30%;
+                        border: 1px solid #c3c4c7;
+                        box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+                        background: #fff;
+                        padding: 1rem;
+
+                        .quote_single_product-details-title {
+                            margin: 0 0 1rem;
+                            font-size: 18px;
+                            font-weight: 700;
+                            text-align: center;
+                        }
+
+                        a {
+                            display: block;
+
+                            .quote_single_product-details-image {
+                                margin: 0 auto;
+                                display: block;
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .quote_single_product-col-right {
+                        width: 60%;
+                        padding: 5px 2rem;
+                        border: 1px solid #c3c4c7;
+                        border-left: 0;
+                        box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+                        background: #fff;
+
+                        .quote_single_product-details-quantity {
+                            font-size: 18px;
+                            text-transform: uppercase;
+                            font-weight: 700;
+                        }
+
+                        .quote_single_product-details-options {
+                            font-size: 18px;
+                            font-weight: 800;
+                            text-transform: uppercase;
+                            margin-bottom: 0;
+                        }
+
+                        ul {
+                            padding-left: 1rem;
+                            list-style: circle;
+
+                            li {
+                                font-size: 16px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
